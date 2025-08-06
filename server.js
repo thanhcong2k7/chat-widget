@@ -2,8 +2,48 @@ import { WebSocketServer } from 'ws';
 import fs from 'fs/promises';
 import axios from 'axios';
 
+
+
+import { google } from 'googleapis';
+
+const API_KEY = 'AIzaSyBuaZdVRKqWUBiHteuvCbMoBx4Dg1lEsOg';
+const CHANNEL_ID = 'UCUvoxZAXTTM5ATQfHIBAMJw';
+let VIDEO_ID = '';
+
+const youtube = google.youtube({
+  version: 'v3',
+  auth: API_KEY,
+});
+
+async function getLatestLivestream() {
+  try {
+    const res = await youtube.search.list({
+      part: 'snippet',
+      channelId: CHANNEL_ID,
+      eventType: 'completed',
+      type: 'video',
+      order: 'date',
+      maxResults: 1,
+    });
+
+    if (!res.data.items || res.data.items.length === 0) {
+      throw new Error('No livestreams found');
+    }
+
+    const video = res.data.items[0];
+    VIDEO_ID = video.id.videoId;
+    console.log('✅ Latest stream video ID:', VIDEO_ID);
+    
+  } catch (error) {
+    console.error('❌ YouTube API error:', error.message);
+    throw error; // Propagate error to caller
+  }
+}
+//VIDEO_ID = await getLatestLivestream();
+await getLatestLivestream();
+
+
 const wss = new WebSocketServer({ port: 8080 });
-const VIDEO_ID = 'wnWKS7JEqWM';
 const CLIENT_VERSION = '2.20250606.01.00';
 const CLIENT_NAME = 'WEB';
 
