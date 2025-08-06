@@ -1,0 +1,135 @@
+{
+  "displayPronouns": {
+    "label": "Show Pronouns",
+    "group": "Display Settings",
+    "type": "checkbox",
+    "value": false
+  },
+  "messagesLimit": {
+    "type": "number",
+    "label": "Message Limit",
+    "value": 15,
+    "group": "Display Settings"
+  },
+  "hideAfter": {
+    "type": "number",
+    "label": "Hide after seconds (999 to disable)",
+    "value": 999,
+    "group": "Display Settings"
+  },
+  "hideCommands": {
+    "label": "Hide messages with ! (commands)",
+    "type": "dropdown",
+    "value": "yes",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Display Settings"
+  },
+  "ignoredUsers": {
+    "label": "Ignored users (comma separated)",
+    "type": "text",
+    "value": "StreamElements",
+    "group": "Display Settings"
+  },
+  "ignoredCommands": {
+    "label": "Ignored commands (comma separated)",
+    "type": "text",
+    "value": "!,?",
+    "group": "Display Settings"
+  },
+  "tipEnabled": {
+    "type": "checkbox",
+    "label": "Display tips in chat",
+    "value": true,
+    "group": "Tips"
+  },
+  "tipMin": {
+    "type": "number",
+    "label": "Minimum tip",
+    "value": 0,
+    "group": "Tips"
+  },
+  "tipCurrency": {
+    "type": "text",
+    "label": "Tip currency",
+    "value": "$",
+    "group": "Tips"
+  },
+  "subEnabled": {
+    "type": "checkbox",
+    "label": "Display subs in chat",
+    "value": true,
+    "group": "Subs"
+  },
+  "resubEnabled": {
+    "type": "checkbox",
+    "label": "Display resubs in chat",
+    "value": true,
+    "group": "Subs"
+  },
+  "giftEnabled": {
+    "type": "checkbox",
+    "label": "Display gift subs in chat",
+    "value": true,
+    "group": "Subs"
+  },
+  "directEnabled": {
+    "type": "checkbox",
+    "label": "Display direct gifts in chat",
+    "value": true,
+    "group": "Subs"
+  },
+  "cheerEnabled": {
+    "type": "checkbox",
+    "label": "Display cheers in chat",
+    "value": true,
+    "group": "Cheers"
+  },
+  "cheerMin": {
+    "type": "number",
+    "label": "Minimum cheers",
+    "value": 0,
+    "group": "Cheers"
+  }, 
+  
+  "testMessage": {
+    "type": "button",
+    "label": "Test broadcaster message",
+    "value": "Test message",
+    "group": "Debug"
+  },
+  "testMessage1": {
+    "type": "button",
+    "label": "Test moderator message",
+    "value": "Test message 2",
+    "group": "Debug"
+  },
+  "testMessage2": {
+    "type": "button",
+    "label": "Test subscriber message",
+    "value": "Test message 3",
+    "group": "Debug"
+  },
+  "testMessageName": {
+    "label": "Username",
+    "type": "text",
+    "value": "Test",
+    "group": "Debug"
+  },
+  
+  "testMessageText": {
+    "label": "Message content",
+    "type": "text",
+    "value": "Test",
+    "group": "Debug"
+  },
+  
+  "testMessage3": {
+    "type": "button",
+    "label": "Test regular message",
+    "value": "Test message 4",
+    "group": "Debug"
+  }
+}
