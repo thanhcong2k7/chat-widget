@@ -1,0 +1,367 @@
+{
+  "testtestMessage": {
+    "label": "Send test default message",
+    "group": "Test messages",
+    "type": "button"
+  },
+    "testMessageLong": {
+    "label": "Send long message (as follower)",
+    "group": "Test messages",
+    "type": "button"
+  },
+     "testMessageVip": {
+    "label": "Send test VIP message",
+    "group": "Test messages",
+    "type": "button"
+  },
+    "testMessageMod": {
+    "label": "Send test Mod message",
+    "group": "Test messages",
+    "type": "button"
+  },
+     "testMessageSub": {
+    "label": "Send test sub message",
+    "group": "Test messages",
+    "type": "button"
+  },
+       "testSubEvent": {
+    "label": "Test subscription event",
+    "group": "Test messages",
+    "type": "button"
+  },
+   "testFollowEvent": {
+    "label": "Test Follow event",
+    "group": "Test messages",
+    "type": "button"
+  },
+   "testCheerEvent": {
+    "label": "Test Cheer event",
+    "group": "Test messages",
+    "type": "button"
+  },
+   "testTipEvent": {
+    "label": "Test Tip event",
+    "group": "Test messages",
+    "type": "button"
+  },
+    "author2": {
+        "label": "Made by @milaeshop | twitter",
+        "type": "hidden",
+        "group": "Messages settings"
+    },
+      "msgConnect": {
+    "label": "Connect messages from the same user (only for bottom align)",
+    "group": "Messages settings",
+    "type": "checkbox"
+  }, 
+      "msgback": {
+        "label": "Message background color",
+        "type": "colorpicker",
+        "value": "#ddd2ff",
+         "group": "Colors"
+    },
+     "modnameb": {
+        "label": "Moderator namebox background",
+        "type": "colorpicker",
+        "value": "#ddd2ff",
+         "group": "Colors"
+    },
+    "namebg": {
+        "label": "Rest namebox background",
+        "type": "colorpicker",
+        "value": "#ddd2ff",
+         "group": "Colors"
+    },
+   "modnamebcol": {
+        "label": "Moderator name color",
+        "type": "colorpicker",
+        "value": "#ddd2ff",
+         "group": "Colors"
+    },
+    "namebgcol": {
+        "label": "Rest name color",
+        "type": "colorpicker",
+        "value": "#ddd2ff",
+         "group": "Colors"
+    },
+      "msgcolor": {
+        "label": "Message text color",
+        "type": "colorpicker",
+        "value": "#ddd2ff",
+         "group": "Colors"
+    },
+   "crystal": {
+        "label": "Crystals color",
+        "type": "colorpicker",
+        "value": "#ddd2ff",
+         "group": "Colors"
+    },
+    "cornerscol": {
+        "label": "Corners color",
+        "type": "colorpicker",
+        "value": "#ddd2ff",
+         "group": "Colors"
+    },
+    "chaincol2": {
+        "label": "Chains color",
+        "type": "colorpicker",
+        "value": "#ddd2ff",
+         "group": "Colors"
+    },
+     "alback": {
+        "label": "Alert messages background",
+        "type": "colorpicker",
+        "value": "#ddd2ff",
+         "group": "Colors"
+    },
+     "alback2": {
+        "label": "Alert messages background 2",
+        "type": "colorpicker",
+        "value": "#ddd2ff",
+         "group": "Colors"
+    },
+   "alicon": {
+        "label": "Alert icon color",
+        "type": "colorpicker",
+        "value": "#ddd2ff",
+         "group": "Colors"
+    },
+     "alicon2": {
+        "label": "Alert icon color",
+        "type": "colorpicker",
+        "value": "#ddd2ff",
+         "group": "Colors"
+    },
+  "alname": {
+        "label": "Alert name color",
+        "type": "colorpicker",
+        "value": "#ddd2ff",
+         "group": "Colors"
+    },
+   "altext": {
+        "label": "Alert text color",
+        "type": "colorpicker",
+        "value": "#ddd2ff",
+         "group": "Colors"
+    },
+   "chaincol": {
+        "label": "Alert chain color",
+        "type": "colorpicker",
+        "value": "#ddd2ff",
+         "group": "Colors"
+    },
+  "alignMessages": {
+    "label": "Align Messages",
+    "type": "dropdown",
+    "value": "bottom",
+    "options": {
+      "bottom": "Bottom",
+      "top": "Top"
+    },
+    "group": "Messages settings"
+  },
+   "msgHideOpt": {
+        "label": "Hide message after some time",
+        "type": "checkbox",
+        "group": "Messages settings",
+        "value": false
+    },
+  "msgHide": {
+        "type": "number",
+        "label": "Messages hide time in seconds",
+        "value": 7,
+        "step": 1,
+        "group": "Messages settings"
+    },
+  "msgFade": {
+    "label": "Old messages fading",
+    "group": "Messages settings",
+    "type": "checkbox"
+  }, 
+   "msgLimit": {
+    "label": "Messages limit",
+    "group": "Messages settings",
+    "type": "checkbox"
+  }, 
+   "msgLimitAmount": {
+        "type": "number",
+        "label": "Messages limit amount",
+        "value": 7,
+        "step": 1,
+        "group": "Messages settings"
+    },
+  "largeEmotes": {
+    "label": "Large emotes on",
+    "type": "dropdown",
+    "value": "on",
+    "options": {
+      "on": "On",
+      "off": "Off"
+    },
+    "group": "Messages settings"
+  },
+    "pronouns": {
+    "type": "checkbox",
+    "label": "Enable pronouns",
+    "value": false,
+    "group": "Messages settings"
+  },
+    "badgesdisplay": {
+        "label": "Show badges",
+        "type": "checkbox",
+        "value": true,
+        "group": "Messages settings"
+    },
+    "badgesCustom": {
+        "label": "Custom badges",
+        "type": "checkbox",
+        "value": true,
+        "group": "Messages settings"
+    },
+    "msgFont": {
+        "label": "Message font",
+        "type": "googleFont",
+        "value": "Poppins",
+      "group": "Text settings"
+    },
+    "namesFont": {
+        "label": "Names font",
+        "type": "googleFont",
+        "value": "Poppins",
+      "group": "Text settings"
+    },
+    "namesBold": {
+        "label": "Names font weight",
+        "type": "dropdown",
+        "options": {
+            "300": "Thin",
+            "400": "Regular",
+            "500": "Medium",
+            "600": "Semibold",
+            "700": "Bold"
+        },
+        "value": "400",
+      "group": "Text settings"
+    },
+    "msgBold": {
+        "label": "Message font weight",
+        "type": "dropdown",
+        "options": {
+            "300": "Thin",
+            "400": "Regular",
+            "500": "Medium",
+            "600": "Semibold",
+            "700": "Bold"
+        },
+        "value": "400",
+      "group": "Text settings"
+    },
+      "alBold": {
+        "label": "Alerts font weight",
+        "type": "dropdown",
+        "options": {
+            "300": "Thin",
+            "400": "Regular",
+            "500": "Medium",
+            "600": "Semibold",
+            "700": "Bold"
+        },
+        "value": "400",
+      "group": "Text settings"
+    },
+    "msgSize": {
+        "type": "number",
+        "label": "Messages font size",
+        "value": 18,
+        "steps": 1,
+      "group": "Text settings"
+    },
+    "namesSize": {
+        "type": "number",
+        "label": "Names font size",
+        "value": 18,
+        "step": 1,
+      "group": "Text settings"
+    },
+     "alerttextSize": {
+        "type": "number",
+        "label": "Alert font size",
+        "value": 18,
+        "steps": 1,
+      "group": "Text settings"
+    },
+  "alertson": {
+    "type": "checkbox",
+    "label": "Enable alerts",
+    "value": false,
+    "group": "Alerts"
+  },
+     "text5": {
+    "label": "-- If alerts on --",
+    "group": "Alerts",
+    "type": "hidden"
+  },
+  "text51": {
+    "label": " ",
+    "group": "Alerts",
+    "type": "hidden"
+  },
+  "alertsfollower": {
+    "type": "checkbox",
+    "label": "Enable alerts for followers",
+    "value": false,
+    "group": "Alerts"
+  },
+    "alertssub": {
+    "type": "checkbox",
+    "label": "Enable alerts for subscribers",
+    "value": false,
+    "group": "Alerts"
+  },
+    "alertsdonation": {
+    "type": "checkbox",
+    "label": "Enable alerts for donations",
+    "value": false,
+    "group": "Alerts"
+  },
+    "alertsbits": {
+    "type": "checkbox",
+    "label": "Enable alerts for cheers",
+    "value": false,
+    "group": "Alerts"
+  },
+    "text52": {
+    "label": "-- Test alerts with EMULATE --",
+    "group": "Alerts",
+    "type": "hidden"
+  },
+     "text54": {
+    "label": " ",
+    "group": "Alerts",
+    "type": "hidden"
+  },
+  "hideCommands": {
+    "label": "Hide messages with ! (commands)",
+    "type": "dropdown",
+    "value": "yes",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Settings"
+  },  
+  "ignoredUsers": {
+    "label": "Ignored users (comma separated)",
+    "type": "text",
+    "value": "StreamElements,OtherBot",
+    "group": "Settings"
+  },
+  "widgetAuthor": {
+      "type": "hidden",
+      "value": "Milaeshop"
+    },
+  "widgetName": {
+      "type": "hidden",
+      "value": "Chat widget"
+    }
+}

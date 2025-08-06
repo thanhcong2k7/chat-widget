@@ -1,5 +1,5 @@
 import { WebSocketServer } from 'ws';
-//import startYouTubeChat from './mess.js';
+import fs from 'fs/promises';
 import axios from 'axios';
 
 const wss = new WebSocketServer({ port: 8080 });
@@ -148,6 +148,62 @@ async function streamLiveChat(videoId, callback) {
     }
   }
 }
+//
+// POST-PROCESSING
+//
+//Sending payload fieldsData
+let rawFieldData = "{}";
+let configFieldData = "{}";
+let themeName = "red";
+let processedCss = "";
+let parsedData = {};
+
+try {
+  rawFieldData = await fs.readFile(`./themes/${themeName}/fields.txt`, 'utf-8');
+} catch (e) {
+  console.error("⚠️ Failed to load fields.txt:", e);
+}
+
+try {
+  configFieldData = await fs.readFile(`./themes/${themeName}/data.json`, 'utf-8');
+  parsedData = JSON.parse(configFieldData);
+} catch (e) {
+  console.error("⚠️ Failed to load data.json:", e);
+}
+
+try {
+  const rawCss = await fs.readFile(`./themes/${themeName}/css.css`, 'utf-8');
+  processedCss = rawCss.replace(/\{([\w-]+)\}/g, (_, key) => {
+    const varName = key.replace(/-/g, '_'); // convert dash-keys
+    return parsedData[key] || parsedData[varName] || 'transparent';
+  });
+} catch (e) {
+  console.error("⚠️ Failed to load or process css.css:", e);
+}
+
+wss.on('connection', (client) => {
+  // Send raw fieldData string
+  client.send(JSON.stringify({
+    type: 'configDataRaw',
+    payload: configFieldData
+  }));
+  // Send raw configData string
+  client.send(JSON.stringify({
+    type: 'fieldDataRaw',
+    payload: rawFieldData
+  }));
+  //Send processedCss
+  client.send(JSON.stringify({
+    type: 'processedCss',
+    payload: processedCss
+  }));
+
+  console.log('Client connected.');
+  client._isReady = true;
+});
+
+
+
 // Start YouTube crawler
 streamLiveChat(VIDEO_ID, (message) => {
   // Broadcast messages to all connected clients
