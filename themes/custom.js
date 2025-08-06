@@ -32,3 +32,7 @@ ws.onmessage = (event) => {
     // Trigger existing message handler
     window.dispatchEvent(new CustomEvent('onEventReceived', mockEvent));
 };
+if (typeof window.SE_API === "undefined") {
+    const raw = document.getElementById("field-data").textContent;
+    fieldData = JSON.parse(raw);
+}

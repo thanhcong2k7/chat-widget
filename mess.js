@@ -1,5 +1,5 @@
 import axios from 'axios';
-import fs from 'fs/promises';
+//import fs from 'fs/promises';
 
 // ——— Your YouTube context ———
 const VIDEO_ID = 'wnWKS7JEqWM';
@@ -66,7 +66,7 @@ async function streamLiveChat(videoId, callback) {
   console.log(`→ Starting live chat stream; init token = ${continuation}`);
 
   // ensure log file exists
-  await fs.writeFile('chat.log', `--- Live Chat Log for ${videoId} ---\n`);
+  //await fs.writeFile('chat.log', `--- Live Chat Log for ${videoId} ---\n`);
 
   let previousMessages = [];
 
@@ -115,7 +115,7 @@ async function streamLiveChat(videoId, callback) {
               }
             } else if ('removeChatItemAction' in live.actions[i]) {
               console.log(`{rem:${live.actions.removeChatItemAction.targetItemId}}\n`);
-              await fs.appendFile('chat.log', `{rem:${live.actions.removeChatItemAction.targetItemId}}\n`);
+              //await fs.appendFile('chat.log', `{rem:${live.actions.removeChatItemAction.targetItemId}}\n`);
             }
 
           // Filter out duplicate messages
@@ -124,7 +124,7 @@ async function streamLiveChat(videoId, callback) {
           // Log unique messages
           for (const line of uniqueMessages) {
             console.log(line);
-            await fs.appendFile('chat.log', line + '\n');
+            //await fs.appendFile('chat.log', line + '\n');
           }
 
           // Update previous messages
