@@ -35,7 +35,7 @@ async function fetchInitialContinuation(videoId) {
 
   const html = resp.data;
   // optional: dump to disk for debugging
-  await fs.writeFile('livechat.html', html);
+  //await fs.writeFile('livechat.html', html);
 
   // pull out the reloadContinuationData token
   const m = html.match(/"reloadContinuationData":\{"continuation":"([^"]+)"/);
@@ -138,7 +138,7 @@ async function streamLiveChat(videoId, callback) {
 
       // 3) Wait before next fetch
       await sleep(500);
-      await fs.writeFile('actions.json', JSON.stringify(live));
+      //await fs.writeFile('actions.json', JSON.stringify(live));
     } catch (err) {
       //console.error('❌ Error:', err.message);
       console.error(err.stack);
