@@ -2,12 +2,14 @@ import { WebSocketServer } from 'ws';
 import fs from 'fs/promises';
 import axios from 'axios';
 
-
+// ARGS:
+//
 
 import { google } from 'googleapis';
 
-const API_KEY = 'AIzaSyBuaZdVRKqWUBiHteuvCbMoBx4Dg1lEsOg';
-const CHANNEL_ID = 'UCUvoxZAXTTM5ATQfHIBAMJw';
+console.log(">> Getting latest stream ID...");
+const API_KEY = 'AIzaSyBuaZdVRKqWUBiHteuvCbMoBx4Dg1lEsOg'; //Based on user
+const CHANNEL_ID = 'UCf5NlkiqHh1BYBKzcdIssOA';
 let VIDEO_ID = '';
 
 const youtube = google.youtube({
@@ -20,7 +22,7 @@ async function getLatestLivestream() {
     const res = await youtube.search.list({
       part: 'snippet',
       channelId: CHANNEL_ID,
-      eventType: 'completed',
+      eventType: 'live',
       type: 'video',
       order: 'date',
       maxResults: 1,
@@ -42,6 +44,7 @@ async function getLatestLivestream() {
 //VIDEO_ID = await getLatestLivestream();
 await getLatestLivestream();
 
+if(!VIDEO_ID) exit(1);
 
 const wss = new WebSocketServer({ port: 8080 });
 const CLIENT_VERSION = '2.20250606.01.00';
