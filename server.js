@@ -1,6 +1,8 @@
 import { WebSocketServer } from 'ws';
 import fs from 'fs/promises';
 import axios from 'axios';
+import http from 'http';
+import path from 'path';
 
 // ARGS:
 //
@@ -9,7 +11,7 @@ import { google } from 'googleapis';
 
 console.log(">> Getting latest stream ID...");
 const API_KEY = 'AIzaSyBuaZdVRKqWUBiHteuvCbMoBx4Dg1lEsOg'; //Based on user
-const CHANNEL_ID = 'UCf5NlkiqHh1BYBKzcdIssOA';
+const CHANNEL_ID = 'UC7HSkveUtUDfvHoqzAk4Qmg';
 let VIDEO_ID = '';
 
 const youtube = google.youtube({
@@ -108,32 +110,21 @@ async function fetchLiveChatPage(continuation) {
 async function streamLiveChat(videoId, callback) {
   let continuation = await fetchInitialContinuation(videoId);
   console.log(`→ Starting live chat stream; init token = ${continuation}`);
-
-  // ensure log file exists
-  //await fs.writeFile('chat.log', `--- Live Chat Log for ${videoId} ---\n`);
-
   let previousMessages = [];
-
   while (true) {
     try {
       const data = await fetchLiveChatPage(continuation);
       const live = data.continuationContents.liveChatContinuation;
-      //console.log(JSON.stringify(live));
       continuation = live.continuations[0].invalidationContinuationData.continuation;
-
-      // 1) Print any new messages
       const newMessages = [];
-      //const action of live.actions;
       if ('actions' in live) {
-        //console.log('actions' in live, !("removeChatItemAction" in live.actions), live.actions.addChatItemAction);
-        if (true) {// (!("removeChatItemAction" in live.actions) && live.actions.addChatItemAction) {
+        if (true) {
           for (let i = 0; i < live.actions.length; i++)
             if ('addChatItemAction' in live.actions[i]) {
               const action = live.actions[i];
               const msgR = action.addChatItemAction.item.liveChatTextMessageRenderer;
               const author = msgR.authorName.simpleText;
               let text = '';
-              //const badge = action.authorBadges[0].liveChatAuthorBadgeRenderer.icon.iconType;
               const runsItem = msgR.message.runs;
               if ('text' in runsItem[0]) {
                 const text2 = runsItem.map(r => r.text).join('');
@@ -152,41 +143,27 @@ async function streamLiveChat(videoId, callback) {
                 text,
                 timestamp: Date.now()
               };
-
-              // Use callback to handle message
               if (typeof callback === 'function') {
                 callback(message);
               }
             } else if ('removeChatItemAction' in live.actions[i]) {
               console.log(`{rem:${live.actions.removeChatItemAction.targetItemId}}\n`);
-              //await fs.appendFile('chat.log', `{rem:${live.actions.removeChatItemAction.targetItemId}}\n`);
             }
-
-          // Filter out duplicate messages
           const uniqueMessages = newMessages.filter(msg => !previousMessages.includes(msg));
-
-          // Log unique messages
           for (const line of uniqueMessages) {
             console.log(line);
-            //await fs.appendFile('chat.log', line + '\n');
           }
-
-          // Update previous messages
           previousMessages = newMessages;
         }
       }
-
       // 2) Get next continuation + timeout
       const contObj = live.continuations[0].invalidationContinuationData;
       continuation = contObj.continuation;
-
       // 3) Wait before next fetch
       await sleep(500);
-      //await fs.writeFile('actions.json', JSON.stringify(live));
     } catch (err) {
       //console.error('❌ Error:', err.message);
       //console.error(err.stack);
-      // back off a few seconds, then retry
       await sleep(100);
     }
   }
@@ -194,13 +171,33 @@ async function streamLiveChat(videoId, callback) {
 //
 // POST-PROCESSING
 //
-//Sending payload fieldsData
 let rawFieldData = "{}";
 let configFieldData = "{}";
 let themeName = "red";
 let processedCss = "";
 let parsedData = {};
 
+//Parsing .ini & renaming files.
+/*
+const ini = fs.readFileSync(`./themes/${themeName}/config.ini`, 'utf8');
+
+// Split into lines, trim whitespace, ignore empty/comment lines
+const lines = ini.split(/\r?\n/).map(l => l.trim()).filter(l => l && !l.startsWith(';'));
+const config = {};
+let currentSection = null;
+for (const line of lines) {
+  if (line.startsWith('[') && line.endsWith(']')) {
+    currentSection = line.slice(1, -1);
+    config[currentSection] = {};
+  } else if (currentSection && line.includes('=')) {
+    const [key, value] = line.split('=').map(s => s.trim());
+    config[currentSection][key] = value.replace(/^"|"$/g, ''); // remove quotes
+  }
+}
+//console.log(config);
+console.log(JSON.stringify(config));
+*/
+//Sending payload fieldsData
 try {
   rawFieldData = await fs.readFile(`./themes/${themeName}/fields.txt`, 'utf-8');
 } catch (e) {

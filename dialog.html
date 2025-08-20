@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Select Theme</title>
+<style>
+  dialog { padding: 1.5em; border-radius: 8px; }
+  label { display: block; margin-bottom: 0.5em; }
+  select { width: 100%; padding: 0.4em; }
+</style>
+</head>
+<body>
+<dialog open>
+  <form method="dialog">
+    <label for="themeSelect">Choose a theme:</label>
+    <select id="themeSelect" name="theme">
+        <option value="2">2</option>
+<option value="MenuWidget">MenuWidget</option>
+<option value="red">red</option>
+<option value="silver">silver</option>
+<option value="widget2">widget2</option>
+    </select>
+    <menu>
+        <button value="cancel">Cancel</button>
+        <button value="ok">OK</button>
+    </menu>
+  </form>
+</dialog>
+</body>
+</html>
