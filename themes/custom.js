@@ -1,4 +1,29 @@
-const ws = new WebSocket('ws://localhost:8080');
+var ws = new WebSocket();
+// Source - https://stackoverflow.com/a
+// Posted by freakish
+// Retrieved 2025-11-16, License - CC BY-SA 3.0
+ws.addEventListener("error", (event) => {
+  console.log(">> WebSocket error: ", event);
+});
+var retry_connecting = function(domain, clb) {
+    ws = new WebSocket(domain);
+    ws.onerror = function() {
+        console.log('WS Error! Retrying...');
+
+        // let the client breath for 100 millis
+        setTimeout(function() {
+            retry_connecting(domain, clb);
+        }, 1000);
+    };
+    ws.onopen = function() {
+        clb(ws);
+    };
+};
+
+retry_connecting('ws://localhost:8080', function(ws) {
+    console.log('WS connected!');
+});
+
 ws.onmessage = (event) => {
     const data = JSON.parse(event.data);
     if (data.type === 'delete') {

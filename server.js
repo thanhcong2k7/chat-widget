@@ -8,10 +8,12 @@ import path from 'path';
 //
 
 import { google } from 'googleapis';
+const wss = new WebSocketServer({ port: 8080 });
+console.log(">> Started WebSocket server on ws://localhost:8080");
 
 console.log(">> Getting latest stream ID...");
 const API_KEY = 'AIzaSyBuaZdVRKqWUBiHteuvCbMoBx4Dg1lEsOg'; //Based on user
-const CHANNEL_ID = 'UCKxNFz11jaNB7yCBWTloDMA';
+const CHANNEL_ID = 'UCUvoxZAXTTM5ATQfHIBAMJw';
 let VIDEO_ID = '';
 
 const youtube = google.youtube({
@@ -40,15 +42,19 @@ async function getLatestLivestream() {
     
   } catch (error) {
     console.error('❌ YouTube API error:', error.message);
-    throw error; // Propagate error to caller
+    //throw error; // Propagate error to caller
   }
 }
 //VIDEO_ID = await getLatestLivestream();
-await getLatestLivestream();
+while (true){
+  await getLatestLivestream();
+  if (VIDEO_ID) break;
+  console.log(">> Waiting 10 seconds to re-check...");
+  await new Promise(resolve => setTimeout(resolve, 10000));
+}
 
 if(!VIDEO_ID) exit(1);
 
-const wss = new WebSocketServer({ port: 8080 });
 const CLIENT_VERSION = '2.20250606.01.00';
 const CLIENT_NAME = 'WEB';
 
@@ -238,11 +244,9 @@ wss.on('connection', (client) => {
     payload: processedCss
   }));
 
-  console.log('Client connected.');
+  console.log('>> WS: Client connected.');
   client._isReady = true;
 });
-
-
 
 // Start YouTube crawler
 streamLiveChat(VIDEO_ID, (message) => {
