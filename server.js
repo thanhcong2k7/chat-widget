@@ -11,7 +11,7 @@ import { google } from 'googleapis';
 
 console.log(">> Getting latest stream ID...");
 const API_KEY = 'AIzaSyBuaZdVRKqWUBiHteuvCbMoBx4Dg1lEsOg'; //Based on user
-const CHANNEL_ID = 'UC7HSkveUtUDfvHoqzAk4Qmg';
+const CHANNEL_ID = 'UCKxNFz11jaNB7yCBWTloDMA';
 let VIDEO_ID = '';
 
 const youtube = google.youtube({
